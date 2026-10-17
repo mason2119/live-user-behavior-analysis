@@ -1,0 +1,31 @@
+
+============================================
+  LIVE ROOM CONVERSION ANALYSIS — SUMMARY
+============================================
+1. CATEGORY: Talent & Dance rooms earn 2-3x more per session
+   than Game or Music rooms. Chat is in the middle.
+
+2. PK EFFECT: Rooms with PK enabled earn ~85% more revenue
+   and have 70% higher interaction density vs non-PK rooms.
+   However, only 20% of rooms use PK.
+
+3. PEAK HOURS: Revenue peaks at 14-22 UTC, aligning with:
+   - Middle East evening (UTC+3: ~17-01 local)
+   - SEA night (UTC+7: ~21-05 local)
+   Suggests scheduling premium content in this window.
+
+4. REVENUE CONCENTRATION (Power Law):
+   - Top 5% rooms capture ~55% of total revenue
+   - Median room: $1,662/day; P95: $13,000+/day
+   - Severe skew: mean is 2x median
+
+5. CROSS-REGION: Rooms with 20-30% cross-region viewers
+   earn 40% more than region-locked rooms.
+
+RECOMMENDATIONS:
+- Encourage PK usage with incentives; current 20% rate is low
+  relative to massive revenue uplift
+- Schedule top anchors in 14-22 UTC window
+- Invest in "cross-region" discovery algorithms
+- Focus operational support on top 5% rooms (Pareto principle)
+============================================

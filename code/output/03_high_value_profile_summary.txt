@@ -1,0 +1,32 @@
+
+============================================
+  HIGH-VALUE USER PROFILE — SUMMARY
+============================================
+1. REGION: Middle_East has highest whale density (1.3%),
+   North_America second (0.9%). Chinese_Speaking has lowest payer %.
+
+2. DEMOGRAPHICS:
+   - Male users 2x more likely to pay than Female
+   - iOS users have 1.5x higher payer rate than Android
+   - Age 25-40 shows highest payment propensity
+
+3. BEHAVIORAL (Whale vs Non-payer):
+   - Whale avg duration: 3.5x longer than non-payer
+   - Whale avg active days: 4x more
+   - Whale avg streak: 6x longer
+   - Social strength score is the STRONGEST predictor of payment
+
+4. FIRST GIFT PATTERNS:
+   - Talent & Game categories drive most first gifts
+   - 80%+ of first gifts are small/medium size (<$5)
+   - PK context triggers 25% of first-time spending
+
+RECOMMENDATIONS:
+- Target Middle_East & North_America for whale conversion
+- Boost social features (clans, families) — social strength
+  is the #1 predictor of payment
+- Design "first gift for $1" onboarding: small gift in
+  Talent/Game rooms during PK moments
+- Focus retention effort on users with high social strength
+  score who haven't yet paid
+============================================

@@ -1,0 +1,25 @@
+
+============================================
+  RETENTION MAGIC NUMBERS — SUMMARY
+============================================
+Metric              Magic Threshold       D1 Retention Lift
+------------------------------------------------------------
+Viewing Duration     >= 5  min             48% -> 58% (+10pp)
+Viewing Duration     >= 15 min             48% -> 65% (+17pp)
+Interactions         >= 1                  48% -> 56% (+ 8pp)
+Interactions         >= 3                  48% -> 70% (+22pp)
+Consecutive Logins   >= 3 days             48% -> 71% (+23pp)
+Consecutive Logins   >= 7 days             48% -> 85% (+37pp)
+Content Diversity    >= 2 categories       48% -> 60% (+12pp)
+
+KEY TAKEAWAYS:
+1. First-day viewing >=5 min is the first critical threshold (D1 >55%)
+2. >=15 min viewing + >=3 interactions -> D1 >70%
+3. Users with >=3 consecutive logins enter "habit zone" (70%+ retention)
+4. Multi-category viewing lifts retention by ~12pp vs single category
+
+RECOMMENDATIONS:
+- New User Onboarding: incentivize >=5 min viewing + >=1 interaction on Day 1
+- D3 Push: personalized content for users with 3+ consecutive logins
+- Content Distribution: recommend 2+ categories to new users
+============================================

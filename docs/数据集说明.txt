@@ -1,0 +1,217 @@
+================================================================================
+                    XXX Live 用户行为专题分析 — 数据集说明
+================================================================================
+
+业务背景：
+  XXX Live 是全球直播平台，核心收入来自用户购买虚拟礼物送给主播。
+  覆盖中东、东南亚、北美等150+国家，MAU达2.721亿。
+
+三大业务问题：
+  1. 留存率不高 — 用户进来几分钟就走 → 找留存"魔法数字"
+  2. 付费转化低 — 大部分人只看不花钱 → 刻画高价值用户画像
+  3. 主播分化严重 — 有人赚有人没人看 → 识别高转化直播间特征
+
+================================================================================
+一、user_base_info（用户基础信息表）— 196,734 行 × 14 列
+================================================================================
+定位：每个用户是谁，长什么样。
+
+字段                含义                      备注
+---------------------------------------------------------------------------
+user_id             用户唯一ID                关联键
+register_date       注册日期
+region              地区                      Southeast_Asia/Middle_East/
+                                              North_America/Chinese_Speaking/
+                                              Others
+gender              性别                      Male/Female，有缺失
+age                 年龄                      有异常值（如4岁、116岁），需清洗
+device_type         设备类型                   Android/iOS
+network_type        网络类型                   WiFi/Mobile，有缺失
+timezone            时区
+user_type           用户官方分层               whale=大R / active_non_pay=活跃不付费
+                                              / silent=沉默 / churn_risk=流失风险
+vip_level           VIP等级                   0-10
+total_spent_usd     累计消费（美元）
+follow_anchor_count 关注主播数
+social_strength_score 社交强度得分             0-1
+is_anchor           是否也是主播               0/1
+
+================================================================================
+二、user_behavior_daily（用户行为日表）— 2,727,556 行 × 27 列 ⭐核心表
+================================================================================
+定位：每个用户每天在平台上做了什么。
+
+字段                     含义                     备注
+--------------------------------------------------------------------------------
+user_id                  用户ID                   联合主键
+stat_date                统计日期                  联合主键
+is_active                当日是否活跃              0/1
+total_duration           总观看时长（秒）          有负值（如-33），需清洗
+like_count               点赞次数
+comment_count            评论次数
+follow_count             关注次数
+pk_participate_count     参与PK投票次数
+gift_send_count          送礼次数
+total_gift_value         当日送礼总价值
+active_hour              活跃高峰小时              0-23
+cross_timezone_watch     是否跨时区观看            0/1
+content_category_main    主要观看分类              Music/Chat/Game/Dance/Talent
+login_streak             连续登录天数
+consecutive_inactive     连续不活跃天数
+duration_7d_avg          近7日平均观看时长
+duration_change_rate     时长变化率
+is_ramadan_period        是否斋月期间              0/1（中东用户重要变量）
+version_flag             APP版本标识
+is_retained_next_day     次日是否留存              ★ 留存目标变量
+is_7d_retained           7日是否留存               ★ 留存目标变量
+is_30d_retained          30日是否留存              ★ 留存目标变量
+first_interaction_day    首次互动距今天数
+behavior_tier            行为分层                  Engaged等
+stage                    用户生命周期阶段
+
+分析重点：
+  - 留存魔法数字：多少时长/互动次数/房间数 → 次日留存显著提升？
+  - 付费触发点：什么行为组合 → 首次送礼概率最高？
+
+================================================================================
+三、live_room_daily（直播间日统计表）— 141,953 行 × 14 列
+================================================================================
+定位：每个直播间每天的表现如何。
+
+字段                      含义                    备注
+---------------------------------------------------------------------------
+room_id                   直播间ID
+anchor_id                 主播ID
+stat_date                 统计日期
+content_category          直播内容分类             Music/Chat/Game/Dance/Talent
+region                    主播所在地区
+stream_hours              直播时长（小时）
+viewer_count              观看人数
+interaction_count         互动总数（点赞+评论+分享）
+interaction_density       互动密度 = 互动/时长
+gift_revenue_usd          礼物收入（美元）         ★ 核心目标变量
+is_pk_room                是否开启PK              0/1
+peak_hour                 观看高峰小时             0-23
+cross_region_viewer_rate  跨地区观众占比
+viewer_region_main        主要观众来源地区
+
+分析重点：
+  - 什么分类/时段/PK状态 → 礼物收入最高？
+  - 互动密度 vs 收入的关系？
+
+================================================================================
+四、anchor_base_info（主播基础信息表）— 1,972 行 × 14 列
+================================================================================
+定位：每个主播的基本面如何。
+
+字段                      含义                    备注
+---------------------------------------------------------------------------
+anchor_id                 主播ID
+user_id                   对应用户ID
+guild_id                  所属公会ID               -1 = 无公会
+join_date                 入驻日期
+region                    所在地区
+content_category          主要直播分类
+anchor_level              主播等级                 A/B/C
+follower_count            粉丝数
+audience_retention_rate   观众留存率
+avg_daily_stream_hours    日均直播时长
+pk_win_rate               PK胜率
+total_gift_received_usd   累计收到礼物（美元）
+revenue_last_2w_change    近两周收入变化率         正值=上升，负值=下降
+churn_risk_label          流失风险标签             LOW/MEDIUM/HIGH
+is_new_anchor             是否新主播               0/1
+first_week_stream_days    首周开播天数
+
+分析重点：
+  - A/B/C级主播的收入差异在哪些维度？
+  - 高收入主播的共同特征？
+
+================================================================================
+五、gift_transaction_log（送礼交易明细表）— 547,654 行 × 11 列
+================================================================================
+定位：每一笔送礼的完整记录。
+
+字段                含义                  备注
+-----------------------------------------------------------------------
+transaction_id      交易唯一ID
+user_id             送礼用户ID
+anchor_id           收礼主播ID
+stat_date           交易日期
+transaction_time    交易时间戳
+transaction_hour    交易小时              0-23
+gift_type           礼物类型              Rose/Candy/Ring等
+gift_value_usd      礼物价值（美元）
+gift_size_category  礼物档次              small/medium/large
+anchor_category     主播分类
+is_pk_context       是否PK场景送礼         0/1
+is_first_gift       是否该用户首次送礼     0/1
+
+分析重点：
+  - 送礼时段分布（哪个小时送礼最多？）
+  - PK场景 vs 非PK场景的送礼差异
+  - 礼物档次偏好：大R vs 普通用户的礼物选择差异
+
+================================================================================
+六、ab_test_exposure（AB实验曝光表）— 14,474 行 × 8 列
+================================================================================
+定位：新用户引导实验数据。实验名：New User Onboarding Guide
+
+字段                      含义                    备注
+---------------------------------------------------------------------------
+exp_id                    实验ID                  exp_new_user_guide_202501
+exp_name                  实验名称                New User Onboarding Guide
+user_id                   用户ID
+group                     实验分组                treatment（实验组）/
+                                                  control（对照组）
+user_segment              用户分层                new_user
+region                    地区
+exposure_date             曝光日期                2025-01-01 ~ 2025-01-14
+exp_start_date            实验开始日期
+exp_end_date              实验结束日期
+metric_retention          留存率指标
+metric_retention_30d      30日留存率
+metric_retention_90d      90日留存率
+user_level_at_exposure    曝光时用户等级
+
+分析重点：
+  - treatment vs control 的留存率是否有显著差异？
+  - 新用户引导是否有效？
+
+================================================================================
+七、guild_info（公会信息表）— 92 行 × 7 列
+================================================================================
+定位：每个公会的运营情况。
+
+字段                      含义                    备注
+---------------------------------------------------------------------------
+guild_id                  公会ID
+guild_name                公会名称                Guild_001 ~ Guild_100左右
+region                    所在地区
+established_date          成立日期
+training_frequency        培训频率                LOW/MEDIUM/HIGH
+guild_efficiency_score    公会效率得分
+anchor_count              旗下主播数
+avg_anchor_revenue_usd    主播平均收入（美元）
+avg_audience_retention    平均观众留存率
+
+分析重点：
+  - 培训频率 vs 主播效率/收入的关系
+  - 不同地区公会的表现差异
+
+================================================================================
+表关联关系：
+  user_base_info.user_id ←→ user_behavior_daily.user_id
+  user_base_info.user_id ←→ gift_transaction_log.user_id
+  anchor_base_info.anchor_id ←→ live_room_daily.anchor_id
+  anchor_base_info.anchor_id ←→ gift_transaction_log.anchor_id
+  anchor_base_info.guild_id ←→ guild_info.guild_id
+  user_base_info.user_id ←→ ab_test_exposure.user_id
+
+数据清洗注意事项：
+  1. user_behavior_daily.total_duration 存在负值
+  2. user_base_info.age 存在异常值（4, 116等）
+  3. gender / network_type / age 存在缺失值
+  4. 斋月字段 is_ramadan_period 对中东用户行为有显著影响
+  5. guild_id = -1 表示主播未加入公会
+================================================================================

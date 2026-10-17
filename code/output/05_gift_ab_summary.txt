@@ -1,0 +1,32 @@
+
+============================================
+  GIFT BEHAVIOR & AB TEST — SUMMARY
+============================================
+GIFT BEHAVIOR:
+1. Rose dominates count (45%) but Castle/Rocket dominate revenue (60%+)
+   -> Whale gifts drive the economy
+
+2. Gift peak: 17-22 UTC, same as room revenue peak
+
+3. PK context lifts avg gift value by ~40%
+   Large/whale gifts are 2x more likely in PK rooms
+
+4. 80% of first gifts are small (<$5); Rose is the gateway gift
+
+AB TEST:
+1. New User Onboarding Guide: +11.4% retention lift (59.4% vs 53.1%)
+   Positive in ALL regions, strongest in Middle_East (+13.1%)
+
+2. Recommendation Algorithm V2: positive but smaller lift
+
+3. Push Notification Timing Optimization: measurable but modest lift
+
+4. Long-term effects sustain: 90-day retention also ~10% higher
+   in treatment group, confirming lasting behavioral impact
+
+RECOMMENDATIONS:
+- Ship New User Onboarding Guide to 100% of new users
+- Use PK moments to prompt first-gift (Rose, <$1)
+- Invest in algorithm-based recommendations (V2 is working)
+- Double down on Middle_East onboarding (highest ROI)
+============================================

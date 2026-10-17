@@ -1,0 +1,30 @@
+# 原始数据未纳入版本控制
+# 数据总量约 780 MB（单个 CSV 最大 294 MB），超出 GitHub 单文件 100 MB 限制
+data/**/*.csv
+data/**/*.zip
+data/**/*.xlsx
+!data/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+
+# 模型与中间产物
+*.pt
+*.pth
+*.pkl
+*.joblib
+code/joblib_temp/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+~$*
