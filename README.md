@@ -1,5 +1,9 @@
 # 直播平台用户行为分析与增长策略
 
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white) ![License](https://img.shields.io/badge/License-MIT-3DA639) ![Domain](https://img.shields.io/badge/Domain-数据分析%20·%20A/B%20实验-2f5de3)
+
+**[在线作品集](https://mason2119.github.io)** ｜ [更多项目](https://github.com/mason2119)
+
 > 围绕「留存 — 转化 — 付费 — 生态」四层业务问题，对 `XXX Live` 脱敏业务数据（MAU 2.72 亿、2025 年直播收入 15.3 亿美元）完成端到端分析。
 >
 > **数据科学与大数据技术课程综合实战项目 · 独立完成数据清洗、建模与全部 4 个专题分析**
